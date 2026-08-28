@@ -1,0 +1,17 @@
+{{- /* Publish author-owned source images and build-only legacy URL variants. */ -}}
+{{- range resources.Match "images/_fullsize/*" -}}
+  {{- $target := printf "images/%s" (path.Base .Name) -}}
+  {{- $published := resources.Copy $target . -}}
+  {{- $unused := $published.RelPermalink -}}
+{{- end -}}
+{{- range (index hugo.Data "legacy-image-variants") -}}
+  {{- $variant := . -}}
+  {{- $source := resources.Get (printf "images/_fullsize/%s" $variant.source) -}}
+  {{- with $source -}}
+    {{- $resized := .Resize (printf "%dx" $variant.width) -}}
+    {{- $published := resources.Copy (printf "images/%s" $variant.target) $resized -}}
+    {{- $unused := $published.RelPermalink -}}
+  {{- else -}}
+    {{- errorf "legacy image source not found: %s" $variant.source -}}
+  {{- end -}}
+{{- end -}}

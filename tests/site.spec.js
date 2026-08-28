@@ -26,6 +26,18 @@ test('archive reaches a preserved post URL', async ({ page }, testInfo) => {
   await page.screenshot({ path: testInfo.outputPath('post.png'), fullPage: true });
 });
 
+test('math-enabled posts render inline and display LaTeX', async ({ page }, testInfo) => {
+  await page.route(/(googletagmanager|googlesyndication|disqus)\./, route => route.abort());
+  await page.goto('/mathematics/2011/07/10/gsl-erlang-and-weibull-distribution/');
+  await expect(page.locator('script[src*="mathjax@3"]')).toHaveCount(1);
+  await expect(page.locator('mjx-container:not([display="true"])').first()).toBeVisible({ timeout: 15_000 });
+  const displayMath = page.locator('mjx-container[display="true"]').first();
+  await expect(displayMath).toBeVisible();
+  await page.screenshot({ path: testInfo.outputPath('math-inline.png') });
+  await displayMath.scrollIntoViewIfNeeded();
+  await page.screenshot({ path: testInfo.outputPath('math-display.png') });
+});
+
 test('error pages render and the legacy 404 redirects to the archive', async ({ page }, testInfo) => {
   await page.goto('/50x.html');
   await expect(page.getByRole('heading', { name: 'Server depressed' })).toBeVisible();

@@ -38,6 +38,18 @@ def main() -> int:
             if not value.startswith("/") or value.startswith("//"): continue
             target = output_path(value)
             if not target.exists(): failures.append(f"{page.relative_to(PUBLIC)} -> {value}")
+    variants = yaml.safe_load((ROOT / "data/legacy-image-variants.yaml").read_text())
+    source_dir = ROOT / "assets/images/_fullsize"
+    static_image_dir = ROOT / "static/images"
+    if static_image_dir.exists() and any(static_image_dir.iterdir()):
+        failures.append("generated or duplicate images are tracked under static/images")
+    for variant in variants:
+        source = source_dir / variant["source"]
+        published_source = PUBLIC / "images" / variant["source"]
+        published_variant = PUBLIC / "images" / variant["target"]
+        if not source.is_file(): failures.append(f"missing source image: {source.relative_to(ROOT)}")
+        if not published_source.is_file(): failures.append(f"missing published source image: {published_source.relative_to(PUBLIC)}")
+        if not published_variant.is_file(): failures.append(f"missing generated legacy image: {published_variant.relative_to(PUBLIC)}")
     if failures:
         print("\n".join(sorted(set(failures))), file=sys.stderr); return 1
     print(f"validated {len(required)} expected URLs and {len(list(PUBLIC.rglob('*.html')))} HTML files")

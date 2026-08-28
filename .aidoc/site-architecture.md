@@ -30,13 +30,11 @@ The migration intentionally changes presentation but not publication identity. H
 
 `content/posts/` contains the 71 migrated posts. Every post has an explicit `url` captured from the preserved production archive rather than deriving paths from filenames or timezone behavior.
 
-`static/images/` contains both source-name images used by Hugo content and hash-name images from the legacy release. The duplicate forms preserve old direct asset URLs while allowing readable new references.
+`assets/images/_fullsize/` contains the single author-owned copy of each image. Hugo publishes those sources at their readable `/images/` URLs and regenerates compatibility variants from `data/legacy-image-variants.yaml`; generated files exist only in `public/`, never in Git. The manifest preserves old direct asset URLs without making build artifacts part of the authored source.
 
 `layouts/` contains a small custom theme instead of an external theme dependency. `static/css/main.css` uses fluid type, constrained reading width, responsive grids, overflow-safe tables and code, and reduced-motion handling.
 
-Google Analytics, the existing responsive AdSense placement, and Disqus remain template partials with their legacy identifiers. Post images keep their original and published hash-named files, while responsive CSS removes the legacy fixed-width requirement. A later image-pipeline change can move source images into Hugo page bundles and generate multiple encoded widths with `srcset`; that is intentionally separate because it rewrites content ownership and generated assets.
-
-The intended image pipeline keeps one author-provided source image in Git and creates display widths and formats during the Hugo build. Generated derivatives belong only to the deployable artifact; authors should not have to prepare or commit multiple sizes.
+Google Analytics, the existing responsive AdSense placement, and Disqus remain template partials with their legacy identifiers. Post images use the original author-provided files with responsive CSS, while `layouts/partials/publish-images.html` creates the legacy fixed-width compatibility files during every Hugo build. Authors add and commit one source image; generated derivatives belong only to the deployable artifact.
 
 Hugo natively treats `<!--more-->` as the summary divider, so the 69 migrated manual dividers retain their established excerpts without a custom plugin. New posts may instead set an explicit front-matter `summary` when a marker inside the body would be awkward.
 
@@ -45,7 +43,8 @@ The static `/404.html` page retains the legacy three-second redirect to `/archiv
 ## Invariants
 
 - Published post and page URLs MUST remain stable.
-- Legacy hash-name image files MUST remain available.
+- Git MUST contain only author-provided image sources, not generated derivatives.
+- Legacy hash-name image URLs MUST remain available in the generated artifact.
 - Builds MUST happen outside the production VM and produce a self-contained `public/` artifact.
 - Staging at `test.gnailuy.com` MUST precede production promotion.
 - Production promotion MUST wait for Yuliang's explicit approval.
