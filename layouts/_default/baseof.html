@@ -5,6 +5,7 @@
   <meta name="viewport" content="width=device-width,initial-scale=1">
   <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
   <title>{{ if .IsHome }}gnailuy.com{{ else }}{{ .Title }} · gnailuy.com{{ end }}</title>
+  {{ if eq .RelPermalink "/404.html" }}<meta http-equiv="refresh" content="3; url=/archive/">{{ end }}
   <link rel="icon" href="/favicon.ico">
   <link rel="alternate" type="application/rss+xml" title="gnailuy.com RSS" href="/index.xml">
   <link rel="stylesheet" href="/css/main.css">

@@ -25,3 +25,17 @@ test('archive reaches a preserved post URL', async ({ page }, testInfo) => {
   expect(overflow).toBeLessThanOrEqual(1);
   await page.screenshot({ path: testInfo.outputPath('post.png'), fullPage: true });
 });
+
+test('error pages render and the legacy 404 redirects to the archive', async ({ page }, testInfo) => {
+  await page.goto('/50x.html');
+  await expect(page.getByRole('heading', { name: 'Server depressed' })).toBeVisible();
+  await expect(page.locator('main')).toContainText('feeling very depressed');
+  await page.screenshot({ path: testInfo.outputPath('50x.png'), fullPage: true });
+
+  await page.goto('/404.html');
+  await expect(page.getByRole('heading', { name: '404 Not Found' })).toBeVisible();
+  await expect(page.locator('meta[http-equiv="refresh"]')).toHaveAttribute('content', '3; url=/archive/');
+  await page.screenshot({ path: testInfo.outputPath('404.png'), fullPage: true });
+  await page.waitForURL('**/archive/', { timeout: 5_000 });
+  await expect(page.getByRole('heading', { name: 'Archive' })).toBeVisible();
+});

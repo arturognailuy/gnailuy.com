@@ -36,7 +36,11 @@ The migration intentionally changes presentation but not publication identity. H
 
 Google Analytics, the existing responsive AdSense placement, and Disqus remain template partials with their legacy identifiers. Post images keep their original and published hash-named files, while responsive CSS removes the legacy fixed-width requirement. A later image-pipeline change can move source images into Hugo page bundles and generate multiple encoded widths with `srcset`; that is intentionally separate because it rewrites content ownership and generated assets.
 
+The intended image pipeline keeps one author-provided source image in Git and creates display widths and formats during the Hugo build. Generated derivatives belong only to the deployable artifact; authors should not have to prepare or commit multiple sizes.
+
 Hugo natively treats `<!--more-->` as the summary divider, so the 69 migrated manual dividers retain their established excerpts without a custom plugin. New posts may instead set an explicit front-matter `summary` when a marker inside the body would be awkward.
+
+The static `/404.html` page retains the legacy three-second redirect to `/archive/`. `/404.html` and `/50x.html` are build invariants; the serving layer maps runtime 404 and 5xx responses to those generated pages while preserving the error status.
 
 ## Invariants
 
