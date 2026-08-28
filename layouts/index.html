@@ -1,0 +1,13 @@
+{{ define "main" }}
+<section class="intro"><p class="eyebrow">Engineering notes since 2011</p><h1>Blog posts</h1></section>
+<section class="post-list" aria-label="Blog posts">
+{{ range where site.RegularPages "Section" "posts" }}
+  <article class="post-card">
+    <p class="post-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 Jan 2006" }}</time>{{ with .Params.categories }} · {{ delimit . ", " }}{{ end }}</p>
+    <h2><a href="{{ .RelPermalink }}">{{ .Title }}</a></h2>
+    <div class="summary">{{ .Summary }}</div>
+    {{ if .Truncated }}<a class="read-more" href="{{ .RelPermalink }}">Read the full post <span aria-hidden="true">→</span></a>{{ end }}
+  </article>
+{{ end }}
+</section>
+{{ end }}

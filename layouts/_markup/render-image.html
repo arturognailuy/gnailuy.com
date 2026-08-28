@@ -1,0 +1,21 @@
+{{- $url := urls.Parse .Destination -}}
+{{- $path := strings.TrimPrefix "/" $url.Path -}}
+{{- $name := strings.TrimPrefix "images/" $path -}}
+{{- $source := resources.Get (printf "images/_fullsize/%s" $name) -}}
+{{- if not $source -}}
+  {{- errorf "image source not found for %q in %s" .Destination .Page.Path -}}
+{{- end -}}
+{{- $published := resources.Copy (printf "images/%s" $name) $source -}}
+{{- $src := $published.RelPermalink -}}
+{{- $srcset := slice -}}
+{{- if in (slice "jpeg" "png" "webp") $source.MediaType.SubType -}}
+  {{- range slice 320 640 960 1280 -}}
+    {{- if lt . $source.Width -}}
+      {{- $resized := $source.Resize (printf "%dx" .) -}}
+      {{- $srcset = $srcset | append (printf "%s %dw" $resized.RelPermalink .) -}}
+      {{- if eq . 640 -}}{{- $src = $resized.RelPermalink -}}{{- end -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $srcset = $srcset | append (printf "%s %dw" $published.RelPermalink $source.Width) -}}
+{{- end -}}
+<img src="{{ $src }}"{{ with $srcset }} srcset="{{ delimit . ", " }}" sizes="(max-width: 760px) calc(100vw - 1.25rem), 46rem"{{ end }} width="{{ $source.Width }}" height="{{ $source.Height }}" alt="{{ .Text }}" class="post-image" loading="lazy" decoding="async">
