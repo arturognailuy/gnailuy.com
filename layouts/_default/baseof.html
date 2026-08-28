@@ -1,0 +1,31 @@
+<!doctype html>
+<html lang="{{ site.Language.Locale }}">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="description" content="{{ with .Description }}{{ . }}{{ else }}{{ site.Params.description }}{{ end }}">
+  <title>{{ if .IsHome }}gnailuy.com{{ else }}{{ .Title }} · gnailuy.com{{ end }}</title>
+  <link rel="icon" href="/favicon.ico">
+  <link rel="alternate" type="application/rss+xml" title="gnailuy.com RSS" href="/index.xml">
+  <link rel="stylesheet" href="/css/main.css">
+  <link rel="stylesheet" href="/css/syntax.css">
+  {{ if .Params.math }}<script defer src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>{{ end }}
+  {{ partial "analytics.html" . }}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <div class="site-shell">
+    <header class="site-header">
+      <a class="brand" href="/" aria-label="gnailuy.com home">{{ site.Title }}</a>
+      <nav aria-label="Primary navigation">
+        <a href="/">home</a><a href="/archive/">archive</a><a href="/about/">about</a>
+      </nav>
+    </header>
+    <main id="main">{{ block "main" . }}{{ end }}</main>
+    <footer class="site-footer">
+      <div><strong>{{ site.Params.author }}</strong><br>{{ site.Params.authorMessage }}<br><code>{{ site.Params.authorEmail }}</code></div>
+      <div><a href="https://github.com/{{ site.Params.authorNickname }}">GitHub</a><br><a href="https://twitter.com/{{ site.Params.authorNickname }}">Twitter</a><br><a href="https://instagram.com/{{ site.Params.authorNickname }}">Instagram</a></div>
+    </footer>
+  </div>
+</body>
+</html>

@@ -1,1 +1,0 @@
-../_image-tag/image_tag.rb

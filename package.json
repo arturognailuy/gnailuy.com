@@ -1,0 +1,14 @@
+{
+  "name": "gnailuy-com",
+  "private": true,
+  "scripts": {
+    "test": "npm run test:artifact && npm run test:html && npm run test:browser",
+    "test:artifact": "python3 scripts/check-site.py",
+    "test:html": "python3 scripts/check-html.py",
+    "test:browser": "playwright test"
+  },
+  "devDependencies": {
+    "@playwright/test": "1.62.1",
+    "html-validate": "11.10.0"
+  }
+}

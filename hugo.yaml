@@ -1,0 +1,27 @@
+baseURL: https://gnailuy.com/
+locale: en-US
+title: .-- .. - .... .-.. --- ...- .
+timeZone: Asia/Shanghai
+enableRobotsTXT: true
+enableGitInfo: false
+disableKinds:
+  - taxonomy
+  - term
+params:
+  author: Yuliang Jin
+  authorMessage: A Developer
+  authorEmail: eXVsaWFuZ0BnbmFpbHV5LmNvbQo=
+  authorNickname: gnailuy
+  description: Yuliang Jin's personal engineering blog
+markup:
+  goldmark:
+    renderer:
+      unsafe: true
+  highlight:
+    lineNos: false
+    noClasses: false
+outputs:
+  home:
+    - HTML
+    - RSS
+    - Sitemap

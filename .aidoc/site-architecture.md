@@ -1,0 +1,49 @@
+---
+domain: Architecture
+status: Active
+entry_points:
+  - hugo.yaml
+  - layouts/_default/baseof.html
+  - content/posts
+dependencies:
+  - .aidoc/verification.md
+---
+
+# Site Architecture
+
+The Hugo migration keeps Yuliang's published writing stable while replacing an unsupported Jekyll toolchain with a reproducible static build. Responsive templates support phones through large screens without coupling the content repository to the production host.
+
+## Related Docs
+
+| Document | Relationship |
+|---|---|
+| [Verification](verification.md) | Proves the build, links, HTML, URLs, and responsive behavior |
+| [INDEX](INDEX.md) | Documentation discovery and reading chains |
+
+## Why Hugo Exists Here
+
+The legacy server mixed publication, runtime containers, a webhook, and a dated Ruby build. Hugo makes the artifact deterministic and allows Caddy to remain a static-file appliance with no repository checkout or build dependencies.
+
+The migration intentionally changes presentation but not publication identity. Historical inbound links, Disqus identifiers, post dates, RSS consumers, analytics, images, and page metadata depend on stable URLs and rendered semantics.
+
+## What the Site Contains
+
+`content/posts/` contains the 71 migrated posts. Every post has an explicit `url` captured from the preserved production archive rather than deriving paths from filenames or timezone behavior.
+
+`static/images/` contains both source-name images used by Hugo content and hash-name images from the legacy release. The duplicate forms preserve old direct asset URLs while allowing readable new references.
+
+`layouts/` contains a small custom theme instead of an external theme dependency. `static/css/main.css` uses fluid type, constrained reading width, responsive grids, overflow-safe tables and code, and reduced-motion handling.
+
+## Invariants
+
+- Published post and page URLs MUST remain stable.
+- Legacy hash-name image files MUST remain available.
+- Builds MUST happen outside the production VM and produce a self-contained `public/` artifact.
+- Staging at `test.gnailuy.com` MUST precede production promotion.
+- Production promotion MUST wait for Yuliang's explicit approval.
+
+## How the Site Works
+
+`hugo.yaml` defines site metadata and renderer behavior. `layouts/index.html`, `layouts/_default/single.html`, and `layouts/archive.html` render navigation surfaces; `layouts/_default/baseof.html` owns global metadata and structure.
+
+`content/posts/*.md` retains Markdown bodies with Jekyll image and highlight tags converted to portable Markdown or HTML. `scripts/check-site.py` compares generated files against explicit content URLs and validates internal references.
