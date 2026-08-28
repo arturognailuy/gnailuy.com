@@ -34,6 +34,8 @@ External links are not a blocking gate because many historical posts intentional
 
 `tests/site.spec.js` loads the built artifact at desktop and mobile viewports, checks primary navigation, verifies representative articles, and rejects horizontal page overflow. Playwright saves screenshots for inspection.
 
+The representative article check also asserts that the configured Google Analytics, responsive AdSense, and Disqus integration points are present without depending on successful third-party network responses.
+
 ## How to Run the Gates
 
 Run `hugo --minify --gc`, then `npm test`. For browser-only iteration, run `npm run test:browser`; Playwright starts a local server from `public/`.

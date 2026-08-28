@@ -1,3 +1,10 @@
 {{ define "main" }}
-<article class="article"><header class="article-header"><h1>{{ .Title }}</h1></header><div class="prose">{{ .Content }}</div>{{ if .Params.comments }}{{ partial "comments.html" . }}{{ end }}</article>
+<article class="article">
+  <header class="article-header">
+    {{ if eq .Section "posts" }}<p class="post-meta"><time datetime="{{ .Date.Format "2006-01-02" }}">{{ .Date.Format "02 Jan 2006" }}</time>{{ with .Params.categories }} · {{ delimit . ", " }}{{ end }}</p>{{ end }}
+    <h1>{{ .Title }}</h1>
+  </header>
+  <div class="prose">{{ .Content }}</div>
+  {{ if eq .Section "posts" }}{{ partial "license.html" . }}{{ partial "ads.html" . }}{{ partial "comments.html" . }}{{ else if .Params.comments }}{{ partial "comments.html" . }}{{ end }}
+</article>
 {{ end }}

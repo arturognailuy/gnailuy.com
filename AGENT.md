@@ -5,4 +5,4 @@
 - Preserve files in `static/images/` whose names include content hashes; published pages may link to those legacy assets.
 - Build with Hugo Extended 0.165.0 and run `npm test` before opening a PR.
 - Run the desktop and mobile Playwright scenarios after UI changes and inspect their screenshots.
-- Do not deploy to `test.gnailuy.com` or `gnailuy.com` from a development branch. Production promotion requires explicit approval.
+- Never deploy uncommitted or unverified work. An immutable artifact from an open PR may be deployed to `test.gnailuy.com` only after the full local gates pass and Yuliang explicitly requests the preview. Production promotion requires a merged default-branch commit and separate explicit approval.

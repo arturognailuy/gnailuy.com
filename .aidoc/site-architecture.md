@@ -24,7 +24,7 @@ The Hugo migration keeps Yuliang's published writing stable while replacing an u
 
 The legacy server mixed publication, runtime containers, a webhook, and a dated Ruby build. Hugo makes the artifact deterministic and allows Caddy to remain a static-file appliance with no repository checkout or build dependencies.
 
-The migration intentionally changes presentation but not publication identity. Historical inbound links, Disqus identifiers, post dates, RSS consumers, analytics, images, and page metadata depend on stable URLs and rendered semantics.
+The migration intentionally changes presentation but not publication identity. Historical inbound links, Disqus identifiers, post dates, RSS consumers, analytics, advertising, images, and page metadata depend on stable URLs and rendered semantics.
 
 ## What the Site Contains
 
@@ -33,6 +33,10 @@ The migration intentionally changes presentation but not publication identity. H
 `static/images/` contains both source-name images used by Hugo content and hash-name images from the legacy release. The duplicate forms preserve old direct asset URLs while allowing readable new references.
 
 `layouts/` contains a small custom theme instead of an external theme dependency. `static/css/main.css` uses fluid type, constrained reading width, responsive grids, overflow-safe tables and code, and reduced-motion handling.
+
+Google Analytics, the existing responsive AdSense placement, and Disqus remain template partials with their legacy identifiers. Post images keep their original and published hash-named files, while responsive CSS removes the legacy fixed-width requirement. A later image-pipeline change can move source images into Hugo page bundles and generate multiple encoded widths with `srcset`; that is intentionally separate because it rewrites content ownership and generated assets.
+
+Hugo natively treats `<!--more-->` as the summary divider, so the 69 migrated manual dividers retain their established excerpts without a custom plugin. New posts may instead set an explicit front-matter `summary` when a marker inside the body would be awkward.
 
 ## Invariants
 
