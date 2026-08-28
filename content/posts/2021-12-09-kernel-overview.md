@@ -33,9 +33,8 @@ Apart from CPU and memory, we also have peripheral devices, such as disk control
 
 Operating system architecture:
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/kernel.gif" alt="Operating System Architecture" loading="lazy" decoding="async"></figure>
-</div>
+![Operating System Architecture](/images/kernel.gif)
+
 
 #### Applications
 
@@ -174,21 +173,18 @@ make ARCH=x86_64 menuconfig
 
 * Navigate to the *Kernel hacking* section and hit `Enter`.
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/kernel_hacking.png" alt="Menu Config" loading="lazy" decoding="async"></figure>
-</div>
+![Menu Config](/images/kernel_hacking.png)
+
 
 * Choose *Compile-time checks and compiler options*.
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/compiler_options.png" alt="Menu Config" loading="lazy" decoding="async"></figure>
-</div>
+![Menu Config](/images/compiler_options.png)
+
 
 * Select *Compile the kernel with debug info* and *Provide GDB scripts for kernel debugging*.
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/debug_info.png" alt="Menu Config" loading="lazy" decoding="async"></figure>
-</div>
+![Menu Config](/images/debug_info.png)
+
 
 Save the configuration to `.config` and exit the TUI.
 
@@ -214,15 +210,13 @@ make menuconfig
 
 Choose the `x86_64` architecture.
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/target_architecture.png" alt="Menu Config" loading="lazy" decoding="async"></figure>
-</div>
+![Menu Config](/images/target_architecture.png)
+
 
 And `ext2/3/4` file system.
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/filesystem.png" alt="Menu Config" loading="lazy" decoding="async"></figure>
-</div>
+![Menu Config](/images/filesystem.png)
+
 
 Build the file system.
 
@@ -336,9 +330,8 @@ From VS Code, press `F5` to start debugging the kernel.
 Try add a breakpoint in the `__schedule()` function in file `kernel/sched/core.c`,
 the kernel will stop at the breakpoint upon the next scheduling.
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/debugging_kernel.png" alt="Debugging the Linux kernel in VS Code" loading="lazy" decoding="async"></figure>
-</div>
+![Debugging the Linux kernel in VS Code](/images/debugging_kernel.png)
+
 
 ### Tip: find a symbol in the kernel source
 

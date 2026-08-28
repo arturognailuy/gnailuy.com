@@ -129,9 +129,8 @@ parity
 它就运行起来了。然后可以在浏览器里访问地址 `http://localhost:8180`，
 就进入到了 Parity 的 WebUI 主页，大概是下面这个样子：
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/home.png" alt="Parity" loading="lazy" decoding="async"></figure>
-</div>
+![Parity](/images/home.png)
+
 
 这时候 Parity 也会开始同步区块链数据，但它不是同步全部区块的所有数据，所以快很多。
 同步的同时，如果是你第一次使用，可以顺便根据向导指引，创建一个新帐号。
@@ -145,30 +144,26 @@ parity
 
 同步完成后，它的状态页面会变成这个样子：
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/status.png" alt="Parity Status" loading="lazy" decoding="async"></figure>
-</div>
+![Parity Status](/images/status.png)
+
 
 按照 10 分钟文的规则，同步和创建帐号不计时，也应该是假设你已经有了 ETH。
 那么下面进入一分钟时间，步骤如下：
 
 * 点击 WebUI 主页上方的 APPLICATIONS 选项卡，进入应用页面；
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/apps.png" alt="Parity Apps" loading="lazy" decoding="async"></figure>
-</div>
+![Parity Apps](/images/apps.png)
+
 
 * 点击一个叫做 TOKEN DEPLOYMENT 的应用，进入这个应用界面；
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/token_deployment.png" alt="Token Deployment" loading="lazy" decoding="async"></figure>
-</div>
+![Token Deployment](/images/token_deployment.png)
+
 
 * 点击右下方的 Deploy 按钮，进入下面这个界面；
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/deploy.png" alt="ICO" loading="lazy" decoding="async"></figure>
-</div>
+![ICO](/images/deploy.png)
+
 
 * 花半分钟思考你的代币叫什么名字，2 到 32 个字符；
 * 同时思考你的代币什么代号，比如 BTC, ETC 都是代号，你也得有一个；

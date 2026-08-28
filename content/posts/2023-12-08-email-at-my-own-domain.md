@@ -17,9 +17,8 @@ My domain name is hosted in Cloudflare and they support **Email routing**.
 I need only one email address so I just added a custom address
 and setup a custom routing to forward all emails sent to here to my Gmail inbox.
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/cloudflare_dashboard.png" alt="Cloudflare dashboard" loading="lazy" decoding="async"></figure>
-</div>
+![Cloudflare dashboard](/images/cloudflare_dashboard.png)
+
 
 To this point, I can receive emails with my address but cannot send email from it.
 I need an SMTP server to do this and thanks to Gmail they offer free SMTP.

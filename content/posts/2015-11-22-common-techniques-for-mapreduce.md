@@ -144,9 +144,8 @@ job.setPartitionerClass(Partitioner.class);
 
 我们可以定义一个 Composite Key 类，包含两个字段：Natural Key 和 Marker。
 
-<div class="legacy-center">
-<figure class="post-image post-image--halfWidth"><img src="/images/compositekey.png" alt="Composite Key" loading="lazy" decoding="async"></figure>
-</div>
+![Composite Key](/images/compositekey.png)
+
 
 并且定义 Partitioner 只根据 Natural Key 的 *hashCode()* 分区，
 Grouping Comparator 也只根据 Natural Key 的 *compare()* 方法做 KEY 比较，
@@ -232,8 +231,7 @@ MapReduce 适用于对大批量、不能全部加载到内存的数据进行批�
 上面这篇文章也发表在了这个公众号上面，欢迎大家搜索 **TheFortyTwo**，
 或者微信扫描下面二维码，关注我们。
 
-<div class="legacy-center">
-<figure class="post-image post-image--twoThirdsWidth"><img src="/images/thefortytwo.png" alt="TheFortyTwo" loading="lazy" decoding="async"></figure>
-</div>
+![TheFortyTwo](/images/thefortytwo.png)
+
 
 [mrdp]:     http://shop.oreilly.com/product/0636920025122.do

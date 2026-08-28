@@ -12,9 +12,8 @@ As titled.
 
 <!--more-->
 
-<div class="legacy-center">
-<figure class="post-image post-image--halfWidth"><img src="/images/US.jpg" alt="US" loading="lazy" decoding="async"></figure>
-</div>
+![US](/images/US.jpg)
+
 
 好久没写文章了，不过实在是还没主意写啥，Po 一张我和我女朋友的合影代替吧，如上。
 

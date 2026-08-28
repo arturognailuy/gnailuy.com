@@ -51,3 +51,23 @@ test('error pages render and the legacy 404 redirects to the archive', async ({ 
   await page.waitForURL('**/archive/', { timeout: 5_000 });
   await expect(page.getByRole('heading', { name: 'Archive' })).toBeVisible();
 });
+
+test('author image names produce responsive Hugo images', async ({ page, request }, testInfo) => {
+  await page.route(/(googletagmanager|googlesyndication|disqus)\./, route => route.abort());
+  await page.goto('/internet/2018/01/12/ico-with-parity/');
+  const image = page.getByRole('img', { name: 'Parity Apps' });
+  await expect(image).toBeVisible();
+  await expect(image).toHaveAttribute('src', /\/images\/_fullsize\/apps_hu_[a-f0-9]+\.png/);
+  await expect(image).toHaveAttribute('srcset', /320w.+640w.+960w.+1280w.+\/images\/apps\.png 1920w/);
+  expect((await request.get('/images/apps.png')).ok()).toBeTruthy();
+  expect((await request.get('/images/apps-630x382-9073fe.png')).status()).toBe(404);
+  const overflow = await page.evaluate(() => document.documentElement.scrollWidth - document.documentElement.clientWidth);
+  expect(overflow).toBeLessThanOrEqual(1);
+  await image.scrollIntoViewIfNeeded();
+  await image.evaluate(element => element.decode());
+  const box = await image.boundingBox();
+  expect(box.width).toBeGreaterThan(0);
+  expect(box.height).toBeGreaterThan(0);
+  expect(box.width).toBeLessThanOrEqual(page.viewportSize().width);
+  await page.screenshot({ path: testInfo.outputPath('responsive-image.png') });
+});

@@ -163,7 +163,7 @@ VIM 的插件库很丰富，这里只是介绍几个我正在使用的小插件�
 不同的是这个窗口里是一个 Bash Shell。
 当然，其中的 `bash` 也可以用 `python` 或者 `mysql -u username -p password` 之类的命令来代替。总之很酷就是了，效果见下图，右下角的窗口就是 Conque Shell 打开的 bash：
 
-<figure class="post-image post-image--fullWidth"><img src="/images/Conque-Shell.png" alt="Conque Shell" loading="lazy" decoding="async"></figure>
+![Conque Shell](/images/Conque-Shell.png)
 
 有一点遗憾的是，这个插件与我在 `.vimrc` 中配置的自动保存设置（上述代码中最后注释掉的部分）有冲突。
 Conque Shell 为它打开的 Buffer 设置了 buftype，禁止写操作，因此离开 Insert 模式后自动写的操作会报错。
@@ -186,7 +186,7 @@ VimRepress 的作者于是自己发布了这个新插件。
 当然如果不配置密码，VimRepress 会在连接时要求你输入密码。
 具体插件的使用，大家参考[官方网站][vimrepress]的文档就可以了，在这里赘述无益，我就请大家看看截图好了：
 
-<figure class="post-image post-image--fullWidth"><img src="/images/vimRepress.png" alt="VimRepress" loading="lazy" decoding="async"></figure>
+![VimRepress](/images/vimRepress.png)
 
 [vim-color]:            http://code.google.com/p/vimcolorschemetest/
 [conque-shell]:         http://www.vim.org/scripts/script.php?script_id=2771

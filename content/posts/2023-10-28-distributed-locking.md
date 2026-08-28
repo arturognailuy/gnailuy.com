@@ -76,9 +76,8 @@ Here is a brief summary of the algorithm:
 
 The Zookeeper namespace is a tree-like hierarchical namespace much like the standard file system.
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/zookeeper_namespace.png" alt="Zookeeper namespace" loading="lazy" decoding="async"></figure>
-</div>
+![Zookeeper namespace](/images/zookeeper_namespace.png)
+
 
 Each node in a Zookeeper namespace can have both data and children associated.
 We use the term `znode` when talking about Zookeeper data nodes.

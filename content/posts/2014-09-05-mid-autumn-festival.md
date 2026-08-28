@@ -18,4 +18,4 @@ categories:
 
 而且说到滚出地球，请下面推上提到的这些人滚出地球吧，最好连银河系也滚出去好了，谢谢：
 
-<figure class="post-image post-image--fullWidth"><img src="/images/Tweet-at-2014-09-05.png" alt="Tweet at 2014-09-05" loading="lazy" decoding="async"></figure>
+![Tweet at 2014-09-05](/images/Tweet-at-2014-09-05.png)

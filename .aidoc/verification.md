@@ -28,11 +28,11 @@ External links are not a blocking gate because many historical posts intentional
 
 ## What CI Verifies
 
-`hugo --minify --gc` builds the artifact with the pinned Extended release. `scripts/check-site.py` verifies all explicit post URLs, required pages, local `href` and `src` targets, source-only image ownership, and the build-generated legacy image URLs.
+`hugo --minify --gc` builds the artifact with the pinned Extended release. `scripts/check-site.py` verifies all explicit post URLs, required pages, local `href`, `src`, and `srcset` targets, and the one-to-one relationship between authored Markdown image names and source-only image ownership.
 
 `html-validate` checks every generated HTML file. The configuration relaxes presentational rules that conflict with historical article HTML while retaining document, nesting, attribute, and accessibility-oriented checks.
 
-`tests/site.spec.js` loads the built artifact at desktop and mobile viewports, checks primary navigation, verifies representative articles and generated error pages, proves the legacy 404-to-archive redirect, and rejects horizontal page overflow. Playwright saves screenshots for inspection.
+`tests/site.spec.js` loads the built artifact at desktop and mobile viewports, checks primary navigation, verifies representative articles and generated error pages, proves authored image names produce responsive Hugo derivatives rather than legacy filenames, proves the legacy 404-to-archive redirect, and rejects horizontal page overflow. Playwright saves screenshots for inspection.
 
 The representative article check also asserts that the configured Google Analytics, responsive AdSense, and Disqus integration points are present without depending on successful third-party network responses. A math-enabled article proves that MathJax renders both inline and display LaTeX.
 

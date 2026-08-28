@@ -20,9 +20,8 @@ then write it into a network device.
 Recall that there is I/O buffering in Linux, so for each `read()` or `write()` call,
 the CPU has to copy data from user space to kernel space, or backwards.
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/traditional_io.png" alt="Traditional I/O" loading="lazy" decoding="async"></figure>
-</div>
+![Traditional I/O](/images/traditional_io.png)
+
 
 With DMA (Direct Memory Access), CPU can avoid copying from/to hardware buffers.
 But it still requires the CPU to spend valuable cycles to copy the data from kernel space to user space,
@@ -37,9 +36,8 @@ In Linux, several zero copy technologies can help here to save the CPU cycles an
 The `mmap()` system call is to create a memory map:
 a section of the user buffer in the user space is mapped to the kernel buffer where the file is located.
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/mmap_and_write.png" alt="mmap() + write()" loading="lazy" decoding="async"></figure>
-</div>
+![mmap() + write()](/images/mmap_and_write.png)
+
 
 With `mmap()`, the data buffer in user space and kernel space physically point to the same address.
 It saves memory space and it saves one copy from the kernel space to the user space.
@@ -53,9 +51,8 @@ Since Linux kernel 2.1,
 there is a new system call `sendfile()` which can been seen as a combination of `mmap()` and `write()`.
 It looks similar but saves one context switch.
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/sendfile.png" alt="sendfile()" loading="lazy" decoding="async"></figure>
-</div>
+![sendfile()](/images/sendfile.png)
+
 
 Note that there is a similar system API in Windows is called `TransmitFile()`.
 
@@ -64,9 +61,8 @@ Note that there is a similar system API in Windows is called `TransmitFile()`.
 New DMA hardware supports the gather copy operation,
 with which you can specify a buffer descriptor containing the memory address and data size and let DMA copy data from there.
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/dma_gather_copy.png" alt="DMA gather copy" loading="lazy" decoding="async"></figure>
-</div>
+![DMA gather copy](/images/dma_gather_copy.png)
+
 
 With the new hardware support, `sendfile()` can now have no CPU copy in the data transmission.
 Note that the input file descriptor has to be a file with `sendfile()`.
@@ -77,9 +73,8 @@ The `splice()` system call looks very similar with `sendfile()`,
 but it can transfer data between two file descriptors of any type.
 `splice()` also eliminates the last CPU copy in the DMA gather copy.
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/splice.png" alt="splice()" loading="lazy" decoding="async"></figure>
-</div>
+![splice()](/images/splice.png)
+
 
 One of the two parameters of `splice()` must be a pipe device,
 so typically, we need two `splice()` calls to bridge two devices (such as the below `file_fd` and `socket_fd`).

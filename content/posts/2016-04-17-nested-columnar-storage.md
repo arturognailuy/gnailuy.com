@@ -58,10 +58,9 @@ Name.Url
 因此，只需要为上面六个字段创建六个列，将字段中的值依次存储下来即可保存所有数据。
 对于 Figure 2 中的两个数据样例 r1 和 r2，对应的六个列如 Figure 3 所示。
 
-<div class="legacy-center">
-<figure class="post-image post-image--halfWidth"><img src="/images/figure1.png" alt="Figure 2" loading="lazy" decoding="async"></figure>
-<figure class="post-image post-image--halfWidth"><img src="/images/figure2.png" alt="Figure 3" loading="lazy" decoding="async"></figure>
-</div>
+![Figure 2](/images/figure1.png)
+![Figure 3](/images/figure2.png)
+
 
 如果只有 Figure 3 中的 value 列，那么这个存储方式将丢失数据原有的结构信息。
 例如，Links.Forward 列中的四个值，如无其他信息，是无从知道哪些是属于 DocId 10，

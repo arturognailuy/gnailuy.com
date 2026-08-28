@@ -19,9 +19,8 @@ Gnome 代理设置之后，大多数的桌面应用，包括 Chrome，都会继�
 从 GUI 上面，可以在 Settings 里面的 Network Tab 中找到代理设置。
 要使用 Clash，设置 HTTP 和 SOCK 代理即可。
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/gnome_settings.png" alt="Gnome Proxy Settings" loading="lazy" decoding="async"></figure>
-</div>
+![Gnome Proxy Settings](/images/gnome_settings.png)
+
 
 不过每次去 GUI 里面修改设置比较麻烦，可以用 `gsettings` 命令行来搞定。
 我包装了一个脚本，如下：

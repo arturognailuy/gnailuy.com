@@ -15,9 +15,8 @@ A brief note on how I/O in Linux is buffered and how DMA frees the CPU from one 
 In Linux, standard I/O is buffered in both user space and kernel space.
 Here is a good summary from the book **The Linux Programming Interface**.
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/io_buffering_summary.png" alt="Summary of I/O buffering" loading="lazy" decoding="async"></figure>
-</div>
+![Summary of I/O buffering](/images/io_buffering_summary.png)
+
 
 Reads and writes with the `stdio` library are firstly buffered in the `stdio` buffer.
 Eventually the system calls `read()`  and `write()` are called to let the kernel handle the I/O requests.
@@ -34,16 +33,14 @@ User application relies on the kernel to read from or write to the disk,
 and data is buffered in different layers.
 A typical `read()` call with only CPU looks like this:
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/read_without_dma.png" alt="A read() call without the DMA" loading="lazy" decoding="async"></figure>
-</div>
+![A read() call without the DMA](/images/read_without_dma.png)
+
 
 It is a waste of CPU time to let it busy on copying data around,
 and that's why we have a hardware DMA.
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/read_with_dma.png" alt="A read() call with the DMA" loading="lazy" decoding="async"></figure>
-</div>
+![A read() call with the DMA](/images/read_with_dma.png)
+
 
 DMA frees the CPU from handling data moving from hardware buffer to kernel buffer,
 but CPU is still needed to move data from kernel space to the application memory.

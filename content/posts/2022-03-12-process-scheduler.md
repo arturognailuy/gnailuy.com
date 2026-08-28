@@ -200,9 +200,8 @@ The smaller a `vruntime` is, which means the task has been assigned less CPU tim
 The Linux kernel uses a red-black tree to maintain processes by the virtual runtime
 (`rb_node` in `./kernel/sched/sched.h` line 541 in commit `09688c0166e7`).
 
-<div class="legacy-center">
-<figure class="post-image post-image--natural"><img src="/images/cfs_rb_tree.gif" alt="Read-black tree in CFS" loading="lazy" decoding="async"></figure>
-</div>
+![Read-black tree in CFS](/images/cfs_rb_tree.gif)
+
 
 In CFS, the task with the smallest `vruntime` is the next task to run. The `vruntime` of a process is calculated based on the priority of the process.
 

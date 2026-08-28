@@ -29,9 +29,8 @@ With virtual memory support, the process can allocate and manage memory as if it
 From the process/programmer's perspective, memory access uses virtual memory addresses,
 which are translated to physical memory addresses by the MMU with the help of page tables.
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/memory_layout.png" alt="Linux Process Memory Layout (X86 32 Bits)" loading="lazy" decoding="async"></figure>
-</div>
+![Linux Process Memory Layout (X86 32 Bits)](/images/memory_layout.png)
+
 
 The above image from [this blog][gustavo2009] shows the virtual memory layout of a process in Linux.
 We will come back to memory management in later posts.
@@ -73,9 +72,8 @@ which internally calls the `wait4()` system call.
 Internally, a process is represented by a `struct task_struct` structure, which is also referred as a process descriptor.
 The kernel maintains a circular doubly linked list of all process descriptors.
 
-<div class="legacy-center">
-<figure class="post-image post-image--fullWidth"><img src="/images/task_struct.png" alt="Linux task_struct Code Sample" loading="lazy" decoding="async"></figure>
-</div>
+![Linux task_struct Code Sample](/images/task_struct.png)
+
 
 In the above code sample in [`linux-next`][linux-next],
 the `struct task_struct` structure is defined in the `include/linux/sched.h` header file.
@@ -139,15 +137,13 @@ Thus all the processes in the system are linked in a tree structure, with the `i
 The `state` field of the process descriptor contains the current state of the process.
 There are five process states in Linux, which is defined in the `./include/linux/sched.h`.
 
-<div class="legacy-center">
-<figure class="post-image post-image--natural"><img src="/images/task_state.png" alt="Linux Task States" loading="lazy" decoding="async"></figure>
-</div>
+![Linux Task States](/images/task_state.png)
+
 
 The kernel changes the process state when the situation changes.
 
-<div class="legacy-center">
-<figure class="post-image post-image--natural"><img src="/images/task_state_flow_chart.jpeg" alt="Linux Task State Flow Chart" loading="lazy" decoding="async"></figure>
-</div>
+![Linux Task State Flow Chart](/images/task_state_flow_chart.jpeg)
+
 
 #### Exiting and cleanup
 
