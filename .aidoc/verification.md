@@ -4,6 +4,7 @@ status: Active
 entry_points:
   - .github/workflows/verify.yml
   - scripts/check-site.py
+  - scripts/package_release.py
   - tests/site.spec.js
 dependencies:
   - .aidoc/site-architecture.md
@@ -41,3 +42,9 @@ The representative article check also asserts that the configured Google Analyti
 Run `hugo --minify --gc`, then `npm test`. For browser-only iteration, run `npm run test:browser`; Playwright starts a local server from `public/`.
 
 CI uploads browser screenshots even when a scenario fails. A release reviewer should inspect both desktop and mobile captures before staging the artifact.
+
+## What the Default-Branch Artifact Contains
+
+Pull-request runs stop after verification and never publish a deployable artifact. A successful push to `master` runs `package_release.build_bundle` against the already-tested `public/` directory and uploads exactly one `site-release-<full-sha>` artifact.
+
+The release ZIP contains one deterministic `gnailuy.com-<full-sha>.tar.gz`, its SHA-256 checksum, and `manifest.json` binding the archive to the repository, workflow run, and head commit. Githook independently verifies those values before extraction or activation.
